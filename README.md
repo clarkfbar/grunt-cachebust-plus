@@ -15,7 +15,7 @@ _If you haven't used [grunt][] before, be sure to check out the [Getting Started
 From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
 
 ```bash
-npm install grunt-cacheBust --save-dev
+npm install grunt-cacheBust-plus --save-dev
 ```
 
 Once that's done, add this line to your project's Gruntfile:
@@ -36,7 +36,7 @@ Use the **cacheBustPlus** task for cache busting static files in your applicatio
 
 _Currently supported static assets: **CSS**, **JavaScript**_
 
-_Note:_ Remote URLs for CSS, JavaScript are ignored by cacheBust.  This assumes that remote URLs for these assets will
+_Note:_ Remote URLs for CSS, JavaScript are ignored by cacheBustPlus.  This assumes that remote URLs for these assets will
 be CDN hosted content, typically for well known libraries like jQuery or Bootstrap. For example, all of below URLs will be ignored:
 
 ```html
@@ -53,7 +53,7 @@ In your project's Gruntfile, add a section named `cacheBustPlus` to the data obj
 
 ```js
 grunt.initConfig({
-  cacheBust: {
+  cacheBustPlus: {
     options: {
       encoding: 'utf8',
       algorithm: 'md5'
@@ -93,14 +93,14 @@ Default value: `'md5'`
 Type: `String`
 Default value: `false`
 
-When set, `cachebust` will try to find the asset files using the baseDir as base path.
+When set, `cacheBustPlus` will try to find the asset files using the baseDir as base path.
 
 #### options.enableUrlFragmentHint
 
 Type: `Boolean`
 Default value: `false`
 
-When true, cachebust will search single and double-quoted strings in scripting languages such as PHP for asset paths. Asset paths must have the `#grunt-cache-bust` URL fragment appended. See [an example](https://github.com/hollandben/grunt-cache-bust/blob/master/test/fixtures/enableUrlFragmentHint.php) for more details.
+When true, cacheBustPlus will search single and double-quoted strings in scripting languages such as PHP for asset paths. Asset paths must have the `#grunt-cache-bust` URL fragment appended. See [an example](https://github.com/hollandben/grunt-cache-bust/blob/master/test/fixtures/enableUrlFragmentHint.php) for more details.
 
 #### options.encoding
 Type: `String`
@@ -151,7 +151,7 @@ Output format looks like this:
 Type: `Boolean`
 Default value: `true`
 
-When true, `cachebust` will rename the reference to the file and the file itself with the generated hash. When set to false, then a query string parameter is added to the end of the file reference.
+When true, `cacheBustPlus` will rename the reference to the file and the file itself with the generated hash. When set to false, then a query string parameter is added to the end of the file reference.
 
 ### Usage Examples
 
