@@ -1,16 +1,16 @@
 {
-  "name": "grunt-cacheBust-plus",
+  "name": "grunt-cachebust-plus",
   "description": "Bust static assets from the cache using content hashing, inspired by hollandben's grunt-cache-bust plugin",
   "version": "0.0.1",
   "author": "yuchen <yuuuuc@163.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yu521088/grunt-cacheBust-plus.git"
+    "url": "https://github.com/yu521088/grunt-cachebust-plus.git"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/yu521088/grunt-cacheBust-plus/blob/master/LICENSE-MIT"
+      "url": "https://github.com/yu521088/grunt-cachebust-plus/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {
