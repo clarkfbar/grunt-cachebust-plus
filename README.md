@@ -1,6 +1,5 @@
-# grunt-cache-bust
+# grunt-cacheBust-plus
 
-[![Build Status](https://travis-ci.org/hollandben/grunt-cache-bust.png?branch=master)](https://travis-ci.org/hollandben/grunt-cache-bust)
 
 > Bust static assets from the cache using content hashing
 
@@ -16,13 +15,13 @@ _If you haven't used [grunt][] before, be sure to check out the [Getting Started
 From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
 
 ```bash
-npm install grunt-cache-bust --save-dev
+npm install grunt-cacheBust --save-dev
 ```
 
 Once that's done, add this line to your project's Gruntfile:
 
 ```js
-grunt.loadNpmTasks('grunt-cache-bust');
+grunt.loadNpmTasks('grunt-cacheBust-plus');
 ```
 
 If the plugin has been installed correctly, running `grunt --help` at the command line should list the newly-installed plugin's task or tasks. In addition, the plugin should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
@@ -31,13 +30,13 @@ If the plugin has been installed correctly, running `grunt --help` at the comman
 [Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
 [package.json]: https://npmjs.org/doc/json.html
 
-## The "cacheBust" task
+## The "cacheBustPlus" task
 
-Use the **cacheBust** task for cache busting static files in your application. This allows them to be cached forever by the browser, just point the task towards any file that contains references to static assets.
+Use the **cacheBustPlus** task for cache busting static files in your application. This allows them to be cached forever by the browser, just point the task towards any file that contains references to static assets.
 
-_Currently supported static assets: **CSS**, **JavaScript**, **images** and **favicons**_
+_Currently supported static assets: **CSS**, **JavaScript**_
 
-_Note:_ Remote URLs for CSS, JavaScript, and images are ignored by cacheBust.  This assumes that remote URLs for these assets will
+_Note:_ Remote URLs for CSS, JavaScript are ignored by cacheBust.  This assumes that remote URLs for these assets will
 be CDN hosted content, typically for well known libraries like jQuery or Bootstrap. For example, all of below URLs will be ignored:
 
 ```html
@@ -50,15 +49,14 @@ be CDN hosted content, typically for well known libraries like jQuery or Bootstr
 ```
 
 ### Overview
-In your project's Gruntfile, add a section named `cacheBust` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `cacheBustPlus` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
   cacheBust: {
     options: {
       encoding: 'utf8',
-      algorithm: 'md5',
-      length: 16
+      algorithm: 'md5'
     },
     assets: {
         files: [{
@@ -82,8 +80,6 @@ grunt.initConfig({
 </body>
 </html>
 ```
-
-All single and double-quoted strings in the target files with "#grunt-cache-bust" appended to the URL will be cache busted.
 
 ### Options
 
@@ -121,7 +117,7 @@ Default value:
 }
 ```
 
-The key in the object is the `selector`, and the value provided is the filter. Filters will be merged with the defaults above. See [an example](https://github.com/hollandben/grunt-cache-bust/blob/master/tasks/cachebust.js#L39) for more details.
+The key in the object is the `selector`, and the value provided is the filter. Filters will be merged with the defaults above. See [an example](https://github.com/yu521088/grunt-cacheBust-plus/blob/master/tasks/cachebust.js#L39) for more details.
 
 #### options.ignorePatterns
 Type: `Array`
@@ -151,12 +147,6 @@ Output format looks like this:
 }
 ```
 
-#### options.length
-Type: `Number`
-Default value: `16`
-
-The number of characters of the file content hash to prefix the file name with.
-
 #### options.rename
 Type: `Boolean`
 Default value: `true`
@@ -169,7 +159,7 @@ When true, `cachebust` will rename the reference to the file and the file itself
 
 ```js
 grunt.initConfig({
-  cacheBust: {
+  cacheBustPlus: {
     files: {
       src: ['index.html', 'contact.html']
     }
@@ -181,10 +171,9 @@ grunt.initConfig({
 
 ```js
 grunt.initConfig({
-  cacheBust: {
+  cacheBustPlus: {
     options: {
       algorithm: 'sha1',
-      length: 32,
       baseDir: '.tmp/public/',
       filters: {
         'script' : [
