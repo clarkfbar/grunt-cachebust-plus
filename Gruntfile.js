@@ -29,10 +29,9 @@ module.exports = function(grunt) {
             }
         },
 
-        cacheBust: {
+        cacheBustPlus: {
             options: {
                 encoding: 'utf8',
-                length: 16,
                 algorithm: 'md5',
                 baseDir: 'tmp/'
             },
@@ -101,6 +100,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', 'bust');
-    grunt.registerTask('bust', ['clean', 'copy', 'cacheBust']);
-    grunt.registerTask('test', ['clean', 'copy', 'cacheBust', 'nodeunit']);
+    grunt.registerTask('bust', ['clean', 'copy', 'cacheBustPlus']);
+    grunt.registerTask('test', ['clean', 'copy', 'cacheBustPlus', 'nodeunit']);
 };
