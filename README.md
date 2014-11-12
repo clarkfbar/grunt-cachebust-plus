@@ -1,4 +1,4 @@
-# grunt-cacheBust-plus
+# grunt-cachebust-plus
 
 
 > Bust static assets from the cache using content hashing
@@ -15,13 +15,13 @@ _If you haven't used [grunt][] before, be sure to check out the [Getting Started
 From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
 
 ```bash
-npm install grunt-cacheBust-plus --save-dev
+npm install grunt-cachebust-plus --save-dev
 ```
 
 Once that's done, add this line to your project's Gruntfile:
 
 ```js
-grunt.loadNpmTasks('grunt-cacheBust-plus');
+grunt.loadNpmTasks('grunt-cachebust-plus');
 ```
 
 If the plugin has been installed correctly, running `grunt --help` at the command line should list the newly-installed plugin's task or tasks. In addition, the plugin should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
@@ -117,7 +117,7 @@ Default value:
 }
 ```
 
-The key in the object is the `selector`, and the value provided is the filter. Filters will be merged with the defaults above. See [an example](https://github.com/yu521088/grunt-cacheBust-plus/blob/master/tasks/cachebust.js#L39) for more details.
+The key in the object is the `selector`, and the value provided is the filter. Filters will be merged with the defaults above. See [an example](https://github.com/yu521088/grunt-cachebust-plus/blob/master/tasks/cachebust.js#L39) for more details.
 
 #### options.ignorePatterns
 Type: `Array`
