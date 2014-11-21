@@ -134,10 +134,13 @@ module.exports = function(grunt) {
             });
 
           for (i = 0; i < foundPaths.length; i++) {
-            grunt.log.writeln('foundPaths['+i+']:  '+foundPaths[i]);
-            opts.assetPathReplacement.forEach(function(rep, j) {
-              foundPaths[i] = foundPaths[i].replace(rep, '');
-            });
+            // grunt.log.writeln('foundPaths['+i+']:  '+foundPaths[i]);
+            // for(j in opts.assetPathReplacement){
+            //   foundPaths[i] = foundPaths[i].replace(j, opts.assetPathReplacement[j]);
+            // }
+            // opts.assetPathReplacement.forEach(function(rep, j) {
+            //   foundPaths[i] = foundPaths[i].replace(rep, '');
+            // });
             paths = paths.concat(foundPaths[i]);
           }
         };
@@ -168,6 +171,7 @@ module.exports = function(grunt) {
     };
 
     var processedFileMap = {};
+    var processedFileHashMap = {};
 
     this.files.forEach(function(file) {
       var src = file.src.filter(function(filepath) {
@@ -190,8 +194,16 @@ module.exports = function(grunt) {
           var newFilePath;
           var newReference;
 
+          // do the asset path replacement, this is useful in template engine like freemarker
+          var j, 
+          refReplaced = reference.slice(0);
+          for(j in opts.assetPathReplacement){
+            refReplaced = refReplaced.replace(j, opts.assetPathReplacement[j]);
+          }
+          grunt.log.writeln('refReplaced: '+refReplaced);
+
           var filePath = (opts.baseDir ? opts.baseDir : path.dirname(filepath)) + '/';
-          var filename = path.normalize((filePath + reference).split('?')[0]);
+          var filename = path.normalize((filePath + refReplaced).split('?')[0]);
           var originalFilename = filename;
           var originalReference = reference;
 
@@ -208,8 +220,8 @@ module.exports = function(grunt) {
           if (opts.rename) {
 
             // If the file has already been cached, use that
-            if (processedFileMap[filename]) {
-              markup = markup.replace(new RegExp(regexEscape(reference), 'g'), processedFileMap[filename]);
+            if (processedFileMap[filename+reference]) {
+              markup = markup.replace(new RegExp(regexEscape(reference), 'g'), processedFileMap[filename+reference]);
             } else {
               var hashReplaceRegex = new RegExp(regexEscape(opts.separator) + '(' + (opts.hash ? opts.hash + '|' : '') + '[a-zA-Z0-9]{' + opts.length + '})', 'ig');
 
@@ -231,7 +243,7 @@ module.exports = function(grunt) {
                 return false;
               }
 
-              var hash = generateHash(grunt.file.read(filename));
+              var hash = processedFileHashMap[filename]||(processedFileHashMap[filename] = generateHash(grunt.file.read(filename)));
 
               // Create our new filename
               newFilename = addHash(filename, hash, path.extname(filename));
@@ -252,7 +264,7 @@ module.exports = function(grunt) {
           }
 
           if (newFilename) {
-            processedFileMap[originalFilename] = newReference;
+            processedFileMap[originalFilename+originalReference] = newReference;
           }
         });
 
