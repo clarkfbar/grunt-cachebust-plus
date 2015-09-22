@@ -44,6 +44,9 @@ module.exports = function(grunt) {
     },
     'link[rel="stylesheet"]': function() {
       return this.attribs['href'];
+    },
+    '.pathTemp': function(){
+      return this.attribs['value'];
     }
   };
 
